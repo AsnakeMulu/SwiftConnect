@@ -74,7 +74,8 @@ def get_requests(request, status):
 	return render(request, "get_requests.html", context={"get_requests": get_requests, "status":status})
 
 def view_request(request, id):
-    return render(request, "approved.html")
+	view_request = Request.objects.get(id=id)
+	return render(request, "view_request.html", context={"request":view_request})
 
 
 def new_request(request):
