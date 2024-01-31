@@ -1,0 +1,44 @@
+{% extends "login_layout.html" %}
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %} 
+{% load static %}
+<div class="card o-hidden border-0 shadow-lg my-5">
+    
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-5 d-none d-lg-block" style="background-image: url(/static/img/image.jpg);"></div>
+            <div class="col-lg-7">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                    </div>
+                    <form class="user" method="post">
+                        {% csrf_token %}
+                        {{ register_form|crispy }}     
+
+                        {% for message in messages %}
+
+                        <div class="alert alert-danger">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            {{ message }}
+                        </div>
+
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                            Register Account
+                        </button>
+                        <hr>
+                    </form>
+                    <p class="text-center text-black ">If you have an account, <a href="{% url 'login' %}">Login</a> instead.</p>
+                            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "login_layout.html" %}
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %} 
+{% load static %}
+<!-- Outer Row -->
+<div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block" style="background-image: url(/static/img/image.jpg);"></div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            </div>
+                            <form class="user" method="post">
+                                {% csrf_token %}
+                                {{ login_form|crispy }}
+
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small">
+                                        <input asp-for="RememberMe" type="checkbox" class="custom-control-input" id="customCheck">
+                                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                    </div>
+                                </div>
+
+                                {% for message in messages %}
+                    
+                                <div class="alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                {{ message }}
+                                </div>
+
+                                {% endfor %}
+
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Login
+                                </button>
+                                <hr>
+                            </form>
+                            <div class="text-center">
+                                <a class="" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            <p class="text-center text-black ">If you have not an account, <a href="{% url 'register' %}">register</a> instead.</p>
+                            
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
