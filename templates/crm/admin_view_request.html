@@ -1,0 +1,42 @@
+{% extends "admin_layout.html" %}
+{% block title %}
+Request
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="card">
+    <div class="card-header">
+      Request details
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Sender BIC</h5>
+      <p class="card-text">{{request.sender_BIC}}</p>
+      <h5 class="card-title">Sender Name</h5>
+      <p class="card-text">{{request.sender_name}}</p>
+      <hr>
+      <h5 class="card-title">Receiver BIC</h5>
+      <p class="card-text">{{request.receiver_BIC}}</p>
+      <h5 class="card-title">Receiver Name</h5>
+      <p class="card-text">{{request.receiver_name}}</p>
+      <hr>
+      <h5 class="card-title">Created Date</h5>
+      <p class="card-text">{{request.created_date}}</p>
+      <h5 class="card-title">Status</h5>
+      <p class="card-text">{{request.status}}</p>
+      <hr>
+      <h5 class="card-title">Description</h5>
+      <p class="card-text">{{request.request_description}}</p>
+      <hr>
+      <a href="{% url 'requests'%}" class="btn btn-primary">Back to All Request</a>
+      <a href="{% url 'approve_request' id=request.id %}" class="btn btn-success"
+      onclick="return confirm(' Are you sure you want to approve request?')">
+        <i class="fa fa-1x fa-check text-white mr-2"></i>Approve</a>
+      <a href="{% url 'reject_request' id=request.id %}" class="btn btn-danger"
+      onclick="return confirm(' Are you sure you want to reject request?')"> 
+      <i class="fa fa-1x fa-ban text-white mr-2"></i>Reject</a>
+    </div>
+  </div>
+
+{% endblock %}

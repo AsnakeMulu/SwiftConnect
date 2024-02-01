@@ -1,0 +1,63 @@
+
+{% extends "admin_layout.html" %}
+{% block title %}
+Requests
+{% endblock %}
+{% block content %}
+{% load static %}
+
+
+<div class="container-fluid p-0 m-0">
+  <div class="container p-0 m-0">
+    <div class="row">
+      <div class="col-lg-12 p-0">
+        <div class="col-lg-12 grid-margin stretch-card p-0">
+            <div class="card">
+            <div class="card-body ">
+                <h4 class="card-title">List of {{status}} Requests</h4>
+                <p class="card-description">
+                </p>
+                <div class="table-responsive">
+                <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Sender BIC </th>
+                        <th> Sender Name </th>
+                        <th> Receiver BIC </th>
+                        <th> Receiver Name  </th>
+                        <th> Created Date </th>
+                        <th> Submitted By  </th>
+                        <th> Action  </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in get_requests %}
+                    <tr>
+                        <td> {{data.id}} </td>
+                        <td> {{data.sender_BIC}} </td>
+                        <td> {{data.sender_name}} </td>
+                        <td> {{data.receiver_BIC}} </td>
+                        <td> {{data.receiver_name}} </td>
+                        <td> {{data.created_date}} </td>
+                        <td> {{data.customer.first_name}} {{data.customer.last_name}} </td>
+                        <td>
+                            <a href="{% url 'admin_view_request' id=data.id %}">
+                                <i class="fa fa-1x fa-list text-primary mr-2"></i>View
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
