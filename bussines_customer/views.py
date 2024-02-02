@@ -68,7 +68,8 @@ def index(request):
 	pending_request = Request.objects.filter(customer=customer, status= "pending".lower()).count
 	approved_request = Request.objects.filter(customer=customer, status= "approved".lower()).count
 	rejected_request = Request.objects.filter(customer=customer, status= "rejected".lower()).count
-	return render(request, "customer/index.html", context={"total_requests":total_request, "approved_requests":approved_request, "pending_requests":pending_request,"rejected_requests":rejected_request })
+	all_requests = Request.objects.filter(customer=customer)
+	return render(request, "customer/index.html", context={"requests": all_requests, "total_requests":total_request, "approved_requests":approved_request, "pending_requests":pending_request,"rejected_requests":rejected_request })
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['customer'])

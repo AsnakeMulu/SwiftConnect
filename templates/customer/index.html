@@ -94,4 +94,52 @@ Dashboard
 
 </div>
 
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Recent Requests</h1>
+</div>
+
+
+<div class="col-lg-12 grid-margin stretch-card p-0">
+    <div class="card">
+    <div class="card-body ">
+        <div class="table-responsive">
+        <table class="table table-striped" width="100%" cellspacing="0">
+            <thead>
+            <tr>
+                <th> ID </th>
+                <th> Sender BIC </th>
+                <th> Sender Name </th>
+                <th> Receiver BIC </th>
+                <th> Receiver Name  </th>
+                <th> Created Date </th>
+                <th> Status  </th>
+                <th> Action  </th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for data in requests %}
+            <tr>
+                <td> {{data.id}} </td>
+                <td> {{data.sender_BIC}} </td>
+                <td> {{data.sender_name}} </td>
+                <td> {{data.receiver_BIC}} </td>
+                <td> {{data.receiver_name}} </td>
+                <td> {{data.created_date}} </td>
+                <td> {{data.status}} </td>
+                <td>
+                    <a href="{% url 'view_request' id=data.id %}">
+                        <i class="fa fa-1x fa-list text-primary mr-2"></i>View
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </div>
+</div>
+
+
 {% endblock %}
