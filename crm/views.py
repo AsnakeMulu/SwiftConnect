@@ -27,7 +27,7 @@ def admin_index(request):
 												   "approved_requests":approved_request, 
 												   "pending_requests":pending_request,
 												   "rejected_requests":rejected_request, 
-												   "today_requests":total_request,
+												   "today_requests":today_request,
 													"week_requests":week_request,
 													"month_requests":month_request,
 													"year_requests":year_request})
